@@ -1,0 +1,17 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Functional_WordGuesser", "Functional_WordGuesser.fsproj", "{0F274A57-E552-4164-9B52-0FAB934E8D42}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|anycpu = Debug|anycpu
+		Release|anycpu = Release|anycpu
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0F274A57-E552-4164-9B52-0FAB934E8D42}.Debug|anycpu.ActiveCfg = Debug|anycpu
+		{0F274A57-E552-4164-9B52-0FAB934E8D42}.Debug|anycpu.Build.0 = Debug|anycpu
+		{0F274A57-E552-4164-9B52-0FAB934E8D42}.Release|anycpu.ActiveCfg = Release|anycpu
+		{0F274A57-E552-4164-9B52-0FAB934E8D42}.Release|anycpu.Build.0 = Release|anycpu
+	EndGlobalSection
+EndGlobal
