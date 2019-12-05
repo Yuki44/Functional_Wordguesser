@@ -1,7 +1,12 @@
-﻿// Learn more about F# at http://fsharp.org
-// See the 'F# Tutorial' project for more help.
+﻿namespace Console
 
-[<EntryPoint>]
-let main argv =
-    printfn "%A" argv
-    0 // return an integer exit code
+open System
+
+module Program =
+
+    [<EntryPoint>]
+    let main argv =
+        Console.WriteLine("Welcome to Word Guesser")
+        Console.WriteLine("")
+        Logic.play Logic.word [] 0
+        0
