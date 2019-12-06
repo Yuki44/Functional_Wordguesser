@@ -6,8 +6,8 @@ module Logic =
 
     let mutable countTries = 0
 
-    let words = [ "chrome"; "spotify"; "talk"; "mind"; "tonight"; "framework" ]
-    //let mutable usedChars = []
+    let words = Config.WORDS
+
 
     let toPartialWord (word : string) (used : char seq) =
         word
@@ -49,4 +49,5 @@ module Logic =
 
     let word = words.[Random().Next(words.Length)]
 
-    do play word [] 0
+
+    do play word [] 0 |> ignore
