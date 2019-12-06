@@ -44,9 +44,13 @@
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="Config.fs" />
+    <Compile Include="HelperClasses\KeyboardHelper.fs" />  
     <Compile Include="Logic.fs" />
     <Compile Include="Program.fs" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="HelperClasses\" />
   </ItemGroup>
   <Import Project="$(FSharpTargetsPath)" />
 </Project>
