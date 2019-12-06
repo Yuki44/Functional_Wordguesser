@@ -1,10 +1,15 @@
-﻿namespace Console
+﻿module Config
 
-module Config =
+let readLines = System.IO.File.ReadLines(@"../properties/words.txt")
 
+let WORDS = Seq.toList readLines
 
-    let readLines = System.IO.File.ReadLines(@"../properties/words.txt")
+let HIDDEN = '*'
 
-    let WORDS = Seq.toList readLines
+let HELP = false
 
-    let HIDDEN = '*'
+let CASE_SENSITIVE = false
+
+let ALLOW_BLANKS = false
+
+let MULTIPLE = false
