@@ -8,5 +8,5 @@ module Program =
     let main argv =
         Console.WriteLine("Welcome to Word Guesser")
         Console.WriteLine("")
-        Logic.play Logic.word [] 0 |> ignore
+        Logic.play Logic.word [] |> ignore
         0

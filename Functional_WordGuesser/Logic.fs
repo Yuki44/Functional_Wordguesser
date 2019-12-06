@@ -34,7 +34,7 @@ module Logic =
         Console.WriteLine("")
         guess
 
-    let rec play word used tally =
+    let rec play word used =
         let word' = toPartialWord word used
         Console.WriteLine(word')
         if word = word' then
@@ -44,10 +44,10 @@ module Logic =
         else
             let guess = getGuess used
 
-            if word |> String.exists ((=) guess) then play word (used @ [ guess ]) tally
-            else play word (used @ [ guess ]) (tally + 1)
+            if word |> String.exists ((=) guess) then play word (used @ [ guess ])
+            else play word (used @ [ guess ])
 
     let word = words.[Random().Next(words.Length)]
 
 
-    do play word [] 0 |> ignore
+    do play word [] |> ignore
