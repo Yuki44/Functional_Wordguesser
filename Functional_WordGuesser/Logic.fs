@@ -13,7 +13,7 @@ module Logic =
         word
         |> String.map (fun c ->
             if Seq.exists ((=) c) used then c
-            else '*')
+            else Config.HIDDEN)
 
     let isGuessValid (used : char seq) (guess : char) =
         Seq.exists ((=) guess) [ 'a'..'z' ] && not (used |> Seq.exists ((=) guess))
