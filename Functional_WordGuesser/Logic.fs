@@ -5,8 +5,11 @@ open System
 module Logic =
 
     let mutable countTries = 0
-
     let words = Config.WORDS
+
+    let rnd = System.Random()
+    
+    let word = words.[rnd.Next(0, words.Length)]
 
 
     let toPartialWord (word : string) (used : char seq) =
@@ -47,7 +50,8 @@ module Logic =
             if word |> String.exists ((=) guess) then play word (used @ [ guess ])
             else play word (used @ [ guess ])
 
-    let word = words.[Random().Next(words.Length)]
+    
+    
 
-
-    do play word [] |> ignore
+    while true do
+        play words.[rnd.Next(0, words.Length)] [] |> ignore
