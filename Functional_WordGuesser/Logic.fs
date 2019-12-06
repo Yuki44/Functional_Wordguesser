@@ -45,7 +45,7 @@ module Logic =
             let guess = getGuess used
 
             if word |> String.exists ((=) guess) then play word (used @ [ guess ]) tally
-            else play word used (tally + 1)
+            else play word (used @ [ guess ]) (tally + 1)
 
     let word = words.[Random().Next(words.Length)]
 
