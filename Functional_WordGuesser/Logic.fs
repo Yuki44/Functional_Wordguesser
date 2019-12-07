@@ -52,7 +52,11 @@ let rec play word used =
     if word = word' then
         Console.WriteLine("...")
         Console.WriteLine("You guessed it! Using only " + (used |> List.length).ToString() + " guesses!")
-        Console.ReadKey(true)
+        Console.ReadKey(true) |> ignore
+        Console.Clear()
+        Console.WriteLine("Shall we play again?")
+        Console.WriteLine("")
+        Console.ReadKey()
     else
         
         let guess = getGuess used
