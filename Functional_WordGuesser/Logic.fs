@@ -4,6 +4,11 @@ open System
 
 let words = Config.WORDS
 
+let mutable word' = ""
+
+let cki = KeyboardHelper.GetKeysAndModifiers()
+
+
 let toPartialWord (word : string) (used : char seq) =
     word
     |> String.map (fun c ->
@@ -34,7 +39,6 @@ let getGuess used =
     guess
 
 let help (wordToGuess : string) (currentGuess : string) =
-    let cki = KeyboardHelper.GetKeysAndModifiers()
     let mutable char = cki.KeyChar
 
     if(cki.Key.ToString().Equals("H") && cki.Modifiers.Equals(ConsoleModifiers.Control) && Config.HELP) then
@@ -43,7 +47,7 @@ let help (wordToGuess : string) (currentGuess : string) =
     char
 
 let rec play word used =
-    let word' = toPartialWord word used
+    word' <- toPartialWord word used
     Console.WriteLine(word')
     if word = word' then
         Console.WriteLine("...")
