@@ -6,7 +6,7 @@ let WORDS = Seq.toList readLines
 
 let HIDDEN = '*'
 
-let HELP = false
+let HELP = true
 
 let CASE_SENSITIVE = false
 

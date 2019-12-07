@@ -18,9 +18,9 @@ let rnd = System.Random()
 let word = words.[rnd.Next(0, words.Length)]
 
 let rec readGuess used =
-    let guess = Console.ReadKey(true).KeyChar |> Char.ToLower
-    if isGuessValid used guess then guess
-    else readGuess used
+        let guess = Console.ReadKey(true).KeyChar |> Char.ToLower
+        if isGuessValid used guess then guess
+        else readGuess used
 
 let getGuess used =
     Console.Write
@@ -33,6 +33,15 @@ let getGuess used =
     Console.WriteLine("")
     guess
 
+let help (wordToGuess : string) (currentGuess : string) =
+    let cki = KeyboardHelper.GetKeysAndModifiers()
+    let mutable char = cki.KeyChar
+
+    if(cki.Key.ToString().Equals("H") && cki.Modifiers.Equals(ConsoleModifiers.Control) && Config.HELP) then
+        char <- GetHelp.HelpLetter(currentGuess)(wordToGuess)
+
+    char
+
 let rec play word used =
     let word' = toPartialWord word used
     Console.WriteLine(word')
@@ -41,10 +50,13 @@ let rec play word used =
         Console.WriteLine("You guessed it! Using only " + (used |> List.length).ToString() + " guesses!")
         Console.ReadKey(true)
     else
+        
         let guess = getGuess used
 
         if word |> String.exists ((=) guess) then play word (used @ [ guess ])
         else play word (used @ [ guess ])
+
+
 
 while true do
     play words.[rnd.Next(0, words.Length)] [] |> ignore
