@@ -5,9 +5,7 @@ open System
 let words = Config.WORDS
 
 let mutable word' = ""
-
-let cki = KeyboardHelper.GetKeysAndModifiers()
-
+let mutable currentWord = ""
 
 let toPartialWord (word : string) (used : char seq) =
     word
@@ -34,19 +32,13 @@ let getGuess used =
                      |> System.String)
          + "]. Guess: ")
     let guess = readGuess used
-    Console.WriteLine(guess)
-    Console.WriteLine("")
+    Console.Write(guess)
+    Console.WriteLine("\n")
     guess
 
-let help (wordToGuess : string) (currentGuess : string) =
-    let mutable char = cki.KeyChar
-
-    if(cki.Key.ToString().Equals("H") && cki.Modifiers.Equals(ConsoleModifiers.Control) && Config.HELP) then
-        char <- GetHelp.HelpLetter(currentGuess)(wordToGuess)
-
-    char
 
 let rec play word used =
+    currentWord <- word
     word' <- toPartialWord word used
     Console.WriteLine(word')
     if word = word' then
