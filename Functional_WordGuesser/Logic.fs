@@ -1,4 +1,4 @@
-﻿module Logic
+module Logic
 
 open System
 
@@ -54,11 +54,11 @@ let rec play word used =
         Console.WriteLine("You guessed it! Using only " + (used |> List.length).ToString() + " guesses!")
         Console.ReadKey(true) |> ignore
         Console.Clear()
-        Console.WriteLine("Shall we play again?")
-        Console.WriteLine("")
-        Console.ReadKey()
+        Console.WriteLine("Shall we play again?\n")
+        Console.ReadKey() |> ignore
+        if Config.HELP then Console.WriteLine("For help press Ctrl+G twice\n")
     else
-        
+
         let guess = getGuess used
 
         if word |> String.exists ((=) guess) then play word (used @ [ guess ])
