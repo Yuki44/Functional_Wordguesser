@@ -1,4 +1,4 @@
-module Logic
+﻿module Logic
 
 open System
 
@@ -16,14 +16,18 @@ let toPartialWord (word : string) (used : char seq) =
 let isGuessValid (used : char seq) (guess : char) =
     Seq.exists ((=) guess) [ 'a'..'z' ] && not (used |> Seq.exists ((=) guess))
 
+
 let rnd = System.Random()
 
 let word = words.[rnd.Next(0, words.Length)]
 
 let rec readGuess used =
-        let guess = Console.ReadKey(true).KeyChar |> Char.ToLower
-        if isGuessValid used guess then guess
-        else readGuess used
+    let guess = Console.ReadKey(true).KeyChar |> Char.ToLower
+    if isGuessValid used guess then guess
+    else if KeyboardHelper.GetKeysAndModifiers().Modifiers.Equals(ConsoleModifiers.Control) && Config.HELP then
+        GetHelp.HelpLetter (word') (currentWord) (used)
+    else readGuess used
+
 
 let getGuess used =
     Console.Write
