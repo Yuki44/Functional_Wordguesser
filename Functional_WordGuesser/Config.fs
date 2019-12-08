@@ -8,8 +8,8 @@ let HIDDEN = '*'
 
 let HELP = true
 
-let CASE_SENSITIVE = false
+let CASE_SENSITIVE = true
 
-let ALLOW_BLANKS = false
+let ALLOW_BLANKS = true
 
 let MULTIPLE = false

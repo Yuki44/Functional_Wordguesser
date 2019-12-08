@@ -2,7 +2,9 @@
 
 open System
 
-let words = Config.WORDS
+let wordsForTesting = Config.WORDS
+
+let words = ["Orange tree";"Magnet";"Coffee";"london";"Redundant"; "concrete"; "wild fire"; "Mirror"]
 
 let mutable word' = ""
 let mutable currentWord = ""
@@ -19,7 +21,18 @@ let isGuessValid (used : char seq) (guess : char) =
 
 let rnd = System.Random()
 
-let word = words.[rnd.Next(0, words.Length)]
+let rec getWord() : string =
+    let word = words.[rnd.Next(0, words.Length)]
+    if Config.ALLOW_BLANKS = false && word.Contains(" ") then getWord()
+    else
+        if Config.CASE_SENSITIVE = true then
+            let wordList = Seq.toList(word.ToLower())
+            String.Concat(Array.ofList(wordList))
+        else
+            word
+
+
+let word = getWord()
 
 let rec readGuess used =
     let guess = Console.ReadKey(true).KeyChar |> Char.ToLower
@@ -63,4 +76,4 @@ let rec play word used =
 
 
 while true do
-    play words.[rnd.Next(0, words.Length)] [] |> ignore
+    play word [] |> ignore
