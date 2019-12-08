@@ -4,25 +4,27 @@ open System
 
 let words = Config.WORDS
 
-//let wordsForTesting = ["Orange tree";"Magnet";"Coffee";"london";"Redundant"; "concrete"; "wild fire"; "Mirror"]
+let wordsForTesting = ["Orange tree";"Magnet";"Coffee";"London";"Redundant"; "Concrete"; "Wild fire"; "Mirror"]
 
 let mutable word' = ""
-let mutable currentWord = ""
 
 let toPartialWord (word : string) (used : char seq) =
     word
     |> String.map (fun c ->
         if Seq.exists ((=) c) used then c
+        elif Seq.exists ((=) c) [' '] && Config.ALLOW_BLANKS 
+            then c  
         else Config.HIDDEN)
 
-let isGuessValid (used : char seq) (guess : char) =
-    Seq.exists ((=) guess) [ 'a'..'z' ] && not (used |> Seq.exists ((=) guess))
-
+let isGuessValid (used : char seq) (guess : char) =    
+    Seq.exists ((=) guess) (Seq.append(Seq.append['A'..'Z'] ['a'..'z'] )[' ']) 
+            && not (used |> Seq.exists ((=) guess))
 
 let rnd = System.Random()
 
 let rec getWord() : string =
-    let word = words.[rnd.Next(0, words.Length)]
+    let mutable word = words.[rnd.Next(0, words.Length)]
+    if Config.CASE_SENSITIVE = false || Config.ALLOW_BLANKS = true then word <- wordsForTesting.[rnd.Next(0, wordsForTesting.Length)]
     if Config.ALLOW_BLANKS = false && word.Contains(" ") then getWord()
     else
         if Config.CASE_SENSITIVE = true then
@@ -32,13 +34,17 @@ let rec getWord() : string =
             word
 
 
-let word = getWord()
+let mutable word = getWord()
 
 let rec readGuess used =
-    let guess = Console.ReadKey(true).KeyChar |> Char.ToLower
+    let mutable guess = Console.ReadKey(true).KeyChar
+    if KeyboardHelper.GetKeysAndModifiers().Modifiers.Equals(ConsoleModifiers.Shift) && Config.CASE_SENSITIVE = false then
+        guess <- guess |> Char.ToUpper
+    else
+        guess <- guess |> Char.ToLower
     if isGuessValid used guess then guess
-    else if KeyboardHelper.GetKeysAndModifiers().Modifiers.Equals(ConsoleModifiers.Control) && Config.HELP then
-        GetHelp.HelpLetter (word') (currentWord) (used)
+    elif KeyboardHelper.GetKeysAndModifiers().Modifiers.Equals(ConsoleModifiers.Control) && Config.HELP then
+        GetHelp.HelpLetter (word') (word) (used)
     else readGuess used
 
 
@@ -55,7 +61,6 @@ let getGuess used =
 
 
 let rec play word used =
-    currentWord <- word
     word' <- toPartialWord word used
     Console.WriteLine(word')
     if word = word' then
@@ -74,6 +79,7 @@ let rec play word used =
         else play word (used @ [ guess ])
 
 
-
 while true do
+    word <- ""
+    word <- getWord()
     play word [] |> ignore
