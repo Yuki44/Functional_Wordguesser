@@ -2,9 +2,9 @@
 
 open System
 
-let wordsForTesting = Config.WORDS
+let words = Config.WORDS
 
-let words = ["Orange tree";"Magnet";"Coffee";"london";"Redundant"; "concrete"; "wild fire"; "Mirror"]
+//let wordsForTesting = ["Orange tree";"Magnet";"Coffee";"london";"Redundant"; "concrete"; "wild fire"; "Mirror"]
 
 let mutable word' = ""
 let mutable currentWord = ""
