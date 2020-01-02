@@ -44,7 +44,7 @@ let rec readGuess used =
         guess <- guess |> Char.ToLower
     if isGuessValid used guess then guess
     elif KeyboardHelper.GetKeysAndModifiers().Modifiers.Equals(ConsoleModifiers.Control) && Config.HELP then
-        GetHelp.HelpLetter (word') (word) (used)
+        GetHelp.HelpLetter (word') (word)
     else readGuess used
 
 

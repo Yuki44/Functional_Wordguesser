@@ -6,7 +6,7 @@ let genRandomNumbers high =
     let rnd = Random()
     rnd.Next(high)
 
-let HelpLetter (currentGuess : string) (wordToGuess : string) (usedGuesses : char list) : char =
+let HelpLetter (currentGuess : string) (wordToGuess : string) : char =
     let mutable helpChar = []
     for c in wordToGuess do
         if not (currentGuess.Contains(c.ToString())) then helpChar <- [ c ] |> List.append helpChar
