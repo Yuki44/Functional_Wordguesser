@@ -10,6 +10,6 @@ let HELP = false
 
 let CASE_SENSITIVE = false
 
-let ALLOW_BLANKS = false
+let ALLOW_BLANKS = true
 
 let MULTIPLE = false

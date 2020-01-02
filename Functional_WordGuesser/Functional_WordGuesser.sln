@@ -1,7 +1,10 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
+VisualStudioVersion = 15.0.28307.960
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Functional_WordGuesser", "Functional_WordGuesser.fsproj", "{0F274A57-E552-4164-9B52-0FAB934E8D42}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "UnitTestProject", "..\UnitTestProject\UnitTestProject.fsproj", "{A1A45C36-09B6-4A28-A6D4-26211BA313EB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,5 +16,15 @@ Global
 		{0F274A57-E552-4164-9B52-0FAB934E8D42}.Debug|anycpu.Build.0 = Debug|anycpu
 		{0F274A57-E552-4164-9B52-0FAB934E8D42}.Release|anycpu.ActiveCfg = Release|anycpu
 		{0F274A57-E552-4164-9B52-0FAB934E8D42}.Release|anycpu.Build.0 = Release|anycpu
+		{A1A45C36-09B6-4A28-A6D4-26211BA313EB}.Debug|anycpu.ActiveCfg = Debug|Any CPU
+		{A1A45C36-09B6-4A28-A6D4-26211BA313EB}.Debug|anycpu.Build.0 = Debug|Any CPU
+		{A1A45C36-09B6-4A28-A6D4-26211BA313EB}.Release|anycpu.ActiveCfg = Release|Any CPU
+		{A1A45C36-09B6-4A28-A6D4-26211BA313EB}.Release|anycpu.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0683664B-A669-4F76-A502-AB5A499537E2}
 	EndGlobalSection
 EndGlobal
