@@ -17,7 +17,7 @@ let ``Get help for word`` () =
 let ``Get help for word 2`` () =
     //Arrange
     let wordToGuess2 = "full house"
-    let wordGuessedSoFar2 = "**ll **us*"
+    let wordGuessedSoFar2 = "*ull **us*"
     let lettersUsedSoFar2 = ['l';'y';'c';'k';'z';'u';'s']
     //Act
     let helpingLetter2 = GetHelp.HelpLetter(wordGuessedSoFar2)(wordToGuess2)(lettersUsedSoFar2)
