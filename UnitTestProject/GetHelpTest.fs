@@ -1,6 +1,7 @@
 ﻿module GetHelpTest
 
 open Xunit
+open System
 
 [<Fact>]
 let ``Get help for word`` () =
@@ -13,13 +14,12 @@ let ``Get help for word`` () =
     //Assert
     Assert.True(wordToGuess1.Contains(helpingLetter1))
 
-[<Fact>]
-let ``Get help for word 2`` () =
-    //Arrange
-    let wordToGuess2 = "full house"
-    let wordGuessedSoFar2 = "*ull **us*"
-    let lettersUsedSoFar2 = ['l';'y';'c';'k';'z';'u';'s']
+[<Theory>]
+[<InlineData("full house","*ull **us*")>]
+[<InlineData("manager","*******")>]
+let ``Get help for word with inline data`` (wordToGuess2 : string, wordGuessedSoFar2 : string) =
+    let emptyList = []
     //Act
-    let helpingLetter2 = GetHelp.HelpLetter(wordGuessedSoFar2)(wordToGuess2)(lettersUsedSoFar2)
+    let helpingLetter2 = GetHelp.HelpLetter(wordGuessedSoFar2)(wordToGuess2)(emptyList)
     //Assert
     Assert.True(wordToGuess2.Contains(helpingLetter2))
